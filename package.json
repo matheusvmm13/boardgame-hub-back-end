@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --runInBand --verbose --detectOpenHandles",
+    "test": "npx jest --runInBand --verbose --detectOpenHandles --passWithNoTests",
     "test-coverage": "npx jest --coverage",
     "start": "node src/index.js",
     "start-dev": "nodemon src/index.js -q"
