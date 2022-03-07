@@ -7,7 +7,8 @@
     "test": "npx jest --runInBand --verbose --detectOpenHandles --passWithNoTests",
     "test-coverage": "npx jest --coverage",
     "start": "node src/index.js",
-    "start-dev": "nodemon src/index.js -q"
+    "start-dev": "nodemon src/index.js -q",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +39,7 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "mongoose": "^6.2.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "supertest": "^6.2.2"
   }
 }
