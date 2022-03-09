@@ -41,5 +41,4 @@ describe("Given a /my-matches/id endpoint", () => {
 afterAll(async () => {
   await mongoose.connection.close();
   await mongoServer.stop();
-  await Match.deleteMany({});
 });
