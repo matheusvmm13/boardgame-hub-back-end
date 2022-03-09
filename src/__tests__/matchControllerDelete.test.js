@@ -3,9 +3,9 @@ require("dotenv").config();
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const { default: mongoose } = require("mongoose");
 const request = require("supertest");
-const app = require("../..");
-const connectDataBase = require("../../../database");
-const Match = require("../../../database/models/Match");
+const app = require("../server");
+const connectDataBase = require("../database");
+const Match = require("../database/models/Match");
 
 let mongoServer;
 
@@ -23,14 +23,6 @@ beforeAll(async () => {
     players: ["6227adb37ab103d1d964c91f", "6227adb37ab103d1d964c91f"],
     maxPlayers: 6,
     location: "Madrid",
-  });
-});
-
-describe("Given a /matches endpoint", () => {
-  describe("When it receives a GET request", () => {
-    test("Then it should reply with a 200 status code", async () => {
-      await request(app).get("/matches/").expect(200);
-    });
   });
 });
 

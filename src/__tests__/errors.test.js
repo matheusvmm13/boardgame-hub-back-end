@@ -1,4 +1,4 @@
-const { notFoundError, generalError } = require("./errors");
+const { notFoundError, generalError } = require("../server/middlewares/errors");
 
 describe("Given a not found error", () => {
   describe("When it receives a response", () => {
