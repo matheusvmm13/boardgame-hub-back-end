@@ -1,4 +1,4 @@
-// const Joi = require("joi");
+const Joi = require("joi");
 const { model, Schema } = require("mongoose");
 
 const MatchSchema = new Schema({
@@ -31,14 +31,14 @@ const MatchSchema = new Schema({
   },
 });
 
-/* const MatchJoiSchema = Joi.object({
+const MatchJoiSchema = Joi.object({
   gameTitle: Joi.string().max(35).required,
   image: Joi.string(),
   maxPlayers: Joi.number().integer().min(2).required,
   date: Joi.date().required,
 });
 
-MatchSchema.statics.isValid = (object) => MatchJoiSchema.validate(object); */
+MatchSchema.statics.isValid = (object) => MatchJoiSchema.validate(object);
 
 const Match = model("Match", MatchSchema, "matches-collection");
 
