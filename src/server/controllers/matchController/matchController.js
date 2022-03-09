@@ -14,4 +14,17 @@ const getAllMatches = async (req, res, next) => {
   }
 };
 
+const deleteMyMatch = async (req, res, next) => {
+  try {
+    const matchToDelete = await Match.findByIdAndDelete(req.params.id);
+    res.status(200).json(matchToDelete);
+    debug(`The ${matchToDelete.gameTitle} was deleted`);
+  } catch (error) {
+    debug(chalk.red(`Error: `, error.message));
+    error.status = 404;
+    next(error);
+  }
+};
+
 module.exports = getAllMatches;
+module.exports = deleteMyMatch;

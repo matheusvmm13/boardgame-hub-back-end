@@ -14,7 +14,6 @@ const MatchSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
   },
   players: {
     type: [Schema.Types.ObjectId],
