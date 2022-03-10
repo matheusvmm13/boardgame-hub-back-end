@@ -32,7 +32,7 @@ describe("Given a /my-matches/id endpoint", () => {
       const matchToBeDeleted = await Match.findOne();
 
       await request(app)
-        .delete(`/my-matches/${matchToBeDeleted._id}`)
+        .delete(`/my-matches/delete/${matchToBeDeleted._id}`)
         .expect(200);
     });
   });
