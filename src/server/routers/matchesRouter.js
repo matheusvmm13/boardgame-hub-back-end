@@ -8,6 +8,6 @@ const {
 
 matchesRouter.get("/matches/", getAllMatches);
 matchesRouter.post("/my-matches/new-match", createNewMatch);
-matchesRouter.delete("/my-matches/:id", deleteMyMatch);
+matchesRouter.delete("/my-matches/delete/:id", deleteMyMatch);
 
 module.exports = matchesRouter;
