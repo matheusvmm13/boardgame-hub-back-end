@@ -14,15 +14,15 @@ beforeAll(async () => {
   await connectDataBase(connectionMemoryString);
 });
 
-describe("Given a /matches endpoint", () => {
+describe("Given a /users endpoint", () => {
   describe("When it receives a GET request", () => {
     test("Then it should reply with a 200 status code", async () => {
-      await request(app).get("/matches/").expect(200);
+      await request(app).get("/users/").expect(200);
     });
   });
   describe("When it receives a bad GET request", () => {
     test("Then it should reply with a 404 status code", async () => {
-      await request(app).get("/matchers/").expect(404);
+      await request(app).get("/user/").expect(404);
     });
   });
 });
