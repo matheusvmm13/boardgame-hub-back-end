@@ -28,6 +28,7 @@ const MatchSchema = new Schema({
   },
   location: {
     type: String,
+    required: true,
   },
 });
 
