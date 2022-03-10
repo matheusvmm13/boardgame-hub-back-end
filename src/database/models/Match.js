@@ -10,8 +10,8 @@ const MatchSchema = new Schema({
     type: String,
   },
   creator: {
-    type: String,
-    ref: "user",
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   date: {
     type: Date,
@@ -20,7 +20,7 @@ const MatchSchema = new Schema({
   players: {
     type: [Schema.Types.ObjectId],
     default: undefined,
-    ref: "user",
+    ref: "User",
   },
   maxPlayers: {
     type: Number,

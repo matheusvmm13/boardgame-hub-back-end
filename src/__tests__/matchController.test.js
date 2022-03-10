@@ -20,6 +20,11 @@ describe("Given a /matches endpoint", () => {
       await request(app).get("/matches/").expect(200);
     });
   });
+  describe("When it receives a bad GET request", () => {
+    test("Then it should reply with a 404 status code", async () => {
+      await request(app).get("/matchers/").expect(404);
+    });
+  });
 });
 
 afterAll(async () => {
