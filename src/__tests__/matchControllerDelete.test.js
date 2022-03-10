@@ -18,7 +18,7 @@ beforeAll(async () => {
     gameTitle: "Carcasone",
     id: "6217ceafa37925757491ca2c",
     image: "",
-    creator: "",
+    creator: "6217ceafa37925757487ca2c",
     date: "2022-03-27T16:30:00.000+00:00",
     players: ["6227adb37ab103d1d964c91f", "6227adb37ab103d1d964c91f"],
     maxPlayers: 6,
