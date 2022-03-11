@@ -11,6 +11,7 @@ const MatchSchema = new Schema({
   },
   creator: {
     type: Schema.Types.ObjectId,
+    default: undefined,
     ref: "User",
   },
   date: {
