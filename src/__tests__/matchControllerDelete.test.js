@@ -36,6 +36,11 @@ describe("Given a /my-matches/id endpoint", () => {
         .expect(200);
     });
   });
+  describe("When it receives a bad DELETE request", () => {
+    test("Then it should reply with a 404 status code", async () => {
+      await request(app).delete(`/my-matches/delete/30824720842`).expect(404);
+    });
+  });
 });
 
 afterAll(async () => {

@@ -4,7 +4,7 @@ const Match = require("../../../database/models/Match");
 
 const getAllMatches = async (req, res, next) => {
   try {
-    const matches = await Match.find();
+    const matches = await Match.find().populate("players");
     res.status(200).json({ matches });
     debug(`These are all the matches: ${matches}`);
   } catch (error) {

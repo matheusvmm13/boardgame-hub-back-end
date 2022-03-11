@@ -30,7 +30,8 @@
       "!src/server/index.js",
       "!./src/server/setupServer.js",
       "!src/server/startServer.js",
-      "!src/database/index.js"
+      "!src/database/index.js",
+      "!src/utils/passwordGenerator.js"
     ],
     "testEnvironment": "node"
   },
