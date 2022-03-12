@@ -48,7 +48,7 @@ const createNewMatchWithId = async (req, res, next) => {
     const { id } = await Match.create(newMatch);
     const createdMatch = await Match.findById(id).populate("creator", userId);
     createdMatch.players.push(userId);
-    createdMatch.save();
+    await createdMatch.save();
     res.status(201).json(createdMatch);
     debug(`The match was created`);
   } catch (error) {

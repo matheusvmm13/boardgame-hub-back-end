@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const { notFoundError, generalError } = require("./middlewares/errors");
 const matchesRouter = require("./routers/matchesRouter");
 const usersRouter = require("./routers/usersRouter");
+const gamesRouter = require("./routers/gamesRouter");
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(helmet());
 
 app.use(matchesRouter);
 app.use(usersRouter);
+app.use(gamesRouter);
 
 app.use(notFoundError);
 app.use(generalError);
