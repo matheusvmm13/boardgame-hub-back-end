@@ -1,10 +1,13 @@
 const chalk = require("chalk");
+const { default: mongoose } = require("mongoose");
 const debug = require("debug")("boardgame:controller");
 const Match = require("../../../database/models/Match");
 
+const toId = mongoose.Types.ObjectId;
+
 const getAllMatches = async (req, res, next) => {
   try {
-    const matches = await Match.find().populate("players");
+    const matches = await Match.find().populate("players").populate("creator");
     res.status(200).json({ matches });
     debug(`These are all the matches: ${matches}`);
   } catch (error) {
@@ -27,6 +30,34 @@ const createNewMatch = async (req, res, next) => {
   }
 };
 
+const createNewMatchWithId = async (req, res, next) => {
+  const userId = toId(req.params.userId);
+  const matchData = req.body;
+
+  const newMatch = {
+    gameTitle: matchData.gameTitle,
+    image: matchData.image,
+    date: matchData.date,
+    players: [],
+    maxPlayers: matchData.maxPlayers,
+    creator: userId,
+    location: matchData.location,
+  };
+
+  try {
+    const { id } = await Match.create(newMatch);
+    const createdMatch = await Match.findById(id).populate("creator", userId);
+    createdMatch.players.push(userId);
+    createdMatch.save();
+    res.status(201).json(createdMatch);
+    debug(`The match was created`);
+  } catch (error) {
+    debug(chalk.red(`Error: `, error.message));
+    error.status = 400;
+    next(error);
+  }
+};
+
 const deleteMyMatch = async (req, res, next) => {
   try {
     const matchToDelete = await Match.findByIdAndDelete(req.params.id);
@@ -39,4 +70,9 @@ const deleteMyMatch = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllMatches, createNewMatch, deleteMyMatch };
+module.exports = {
+  getAllMatches,
+  createNewMatch,
+  deleteMyMatch,
+  createNewMatchWithId,
+};
