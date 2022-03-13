@@ -4,7 +4,9 @@ const User = require("../../../database/models/User");
 
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find().populate("matches");
+    const users = await User.find()
+      .populate("matches")
+      .populate({ path: "boardgames", select: "name" });
     res.status(200).json({ users });
     debug(`These are all the users: ${users}`);
   } catch (error) {

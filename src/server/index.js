@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(helmet());
 
-app.use("/all-boardgames", gamesRouter);
+app.use(gamesRouter);
 app.use(matchesRouter);
 app.use(usersRouter);
 

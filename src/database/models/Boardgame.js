@@ -1,6 +1,9 @@
 const { model, Schema } = require("mongoose");
 
 const BoardgameSchema = new Schema({
+  _id: {
+    type: Schema.Types.ObjectId,
+  },
   id: {
     type: "String",
   },
