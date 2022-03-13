@@ -1,5 +1,5 @@
-const chalk = require("chalk");
 const debug = require("debug")("boardgame:boardgame");
+const chalk = require("chalk");
 const User = require("../../../database/models/User");
 
 const addBoardgame = async (req, res, next) => {
