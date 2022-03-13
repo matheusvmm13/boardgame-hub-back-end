@@ -62,7 +62,7 @@ const createNewMatchWithId = async (req, res, next) => {
 const getMyMatches = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).populate("matches");
-    res.status(200).json(user);
+    res.status(200).json(user.matches);
   } catch (error) {
     debug(chalk.red(`Error: `, error.message));
     error.status = 404;
