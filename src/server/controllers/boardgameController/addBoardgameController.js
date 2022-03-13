@@ -3,11 +3,12 @@ const chalk = require("chalk");
 const User = require("../../../database/models/User");
 
 const addBoardgame = async (req, res, next) => {
-  const { gameName } = req.params;
+  const { gameId } = req.params;
   const { idUser } = req.params;
   try {
     const userData = await User.findById(idUser);
-    userData.boargames.push(gameName);
+    console.log(userData);
+    userData.boargames.push(gameId);
     await userData.save();
     res.status(200).json({ userData });
   } catch (error) {
