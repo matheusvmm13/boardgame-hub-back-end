@@ -2,10 +2,10 @@
 require("dotenv").config();
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const { default: mongoose } = require("mongoose");
-const connectDataBase = require("../database");
+const connectDataBase = require("../../database");
 const {
   createNewMatch,
-} = require("../server/controllers/matchController/matchController");
+} = require("../../server/controllers/matchController/matchController");
 
 let mongoServer;
 
