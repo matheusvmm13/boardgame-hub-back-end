@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     type: String,
   },
   boargames: {
-    type: [Schema.Types.ObjectId],
+    type: [],
     default: undefined,
     ref: "Boardgame",
   },
