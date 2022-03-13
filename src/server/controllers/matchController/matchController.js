@@ -2,6 +2,7 @@ const chalk = require("chalk");
 const { default: mongoose } = require("mongoose");
 const debug = require("debug")("boardgame:controller");
 const Match = require("../../../database/models/Match");
+const User = require("../../../database/models/User");
 
 const toId = mongoose.Types.ObjectId;
 
@@ -58,6 +59,17 @@ const createNewMatchWithId = async (req, res, next) => {
   }
 };
 
+const getMyMatches = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id).populate("matches");
+    res.status(200).json(user);
+  } catch (error) {
+    debug(chalk.red(`Error: `, error.message));
+    error.status = 404;
+    next(error);
+  }
+};
+
 const deleteMyMatch = async (req, res, next) => {
   try {
     const matchToDelete = await Match.findByIdAndDelete(req.params.id);
@@ -74,5 +86,6 @@ module.exports = {
   getAllMatches,
   createNewMatch,
   deleteMyMatch,
+  getMyMatches,
   createNewMatchWithId,
 };
