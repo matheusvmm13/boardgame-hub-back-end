@@ -3,8 +3,8 @@ require("dotenv").config();
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const { default: mongoose } = require("mongoose");
 const request = require("supertest");
-const app = require("../server");
-const connectDataBase = require("../database");
+const app = require("../../server");
+const connectDataBase = require("../../database");
 
 let mongoServer;
 
