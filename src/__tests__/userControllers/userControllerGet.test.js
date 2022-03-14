@@ -5,9 +5,7 @@ const { default: mongoose } = require("mongoose");
 const request = require("supertest");
 const app = require("../../server");
 const connectDataBase = require("../../database");
-const {
-  getUsers,
-} = require("../../server/controllers/usersController/userController");
+const getUsers = require("../../server/controllers/usersController/userController");
 
 let mongoServer;
 

@@ -5,7 +5,9 @@ const request = require("supertest");
 const connectDataBase = require("../../database");
 const User = require("../../database/models/User");
 const app = require("../../server");
-const getAllBoardgames = require("../../server/controllers/boardgameController/getBoardgameController");
+const {
+  getAllBoardgames,
+} = require("../../server/controllers/boardgameController/getBoardgameController");
 
 let mongoServer;
 
