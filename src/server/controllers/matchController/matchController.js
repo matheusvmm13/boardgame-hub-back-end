@@ -8,7 +8,15 @@ const toId = mongoose.Types.ObjectId;
 
 const getAllMatches = async (req, res, next) => {
   try {
-    const matches = await Match.find().populate("players").populate("creator");
+    const matches = await Match.find()
+      .populate({
+        path: "players",
+        select: "-password -boardgames -matches",
+      })
+      .populate({
+        path: "creator",
+        select: "-password -boardgames -matches",
+      });
     res.status(200).json({ matches });
     debug(`These are all the matches: ${matches}`);
   } catch (error) {

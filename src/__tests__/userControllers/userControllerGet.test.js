@@ -5,6 +5,9 @@ const { default: mongoose } = require("mongoose");
 const request = require("supertest");
 const app = require("../../server");
 const connectDataBase = require("../../database");
+const {
+  getUsers,
+} = require("../../server/controllers/usersController/userController");
 
 let mongoServer;
 
@@ -23,6 +26,13 @@ describe("Given a /users endpoint", () => {
   describe("When it receives a bad GET request", () => {
     test("Then it should reply with a 404 status code", async () => {
       await request(app).get("/user/").expect(404);
+    });
+    test("Then it should invoke next", async () => {
+      const next = jest.fn();
+
+      await getUsers(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });

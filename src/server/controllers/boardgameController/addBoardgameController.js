@@ -7,8 +7,7 @@ const addBoardgame = async (req, res, next) => {
   const { idUser } = req.params;
   try {
     const userData = await User.findById(idUser);
-    console.log(userData);
-    userData.boargames.push(gameId);
+    userData.boardgames.push(gameId);
     await userData.save();
     res.status(200).json({ userData });
   } catch (error) {

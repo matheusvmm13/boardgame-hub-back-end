@@ -16,7 +16,7 @@ beforeAll(async () => {
 });
 
 describe("Given a /my-matches/id endpoint", () => {
-  describe("When it receives a DELETE request", () => {
+  describe("When it receives a POST request", () => {
     test("Then it should reply with a 200 status code", async () => {
       const req = {
         body: {
@@ -41,6 +41,15 @@ describe("Given a /my-matches/id endpoint", () => {
 
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalled();
+    });
+  });
+  describe("When it receives a POST bad request", () => {
+    test("Then it should invoke next", async () => {
+      const next = jest.fn();
+
+      await createNewMatch(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });

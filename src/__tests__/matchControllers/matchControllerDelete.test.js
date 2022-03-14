@@ -6,6 +6,9 @@ const request = require("supertest");
 const app = require("../../server");
 const connectDataBase = require("../../database");
 const Match = require("../../database/models/Match");
+const {
+  deleteMyMatch,
+} = require("../../server/controllers/matchController/matchController");
 
 let mongoServer;
 
@@ -39,6 +42,15 @@ describe("Given a /my-matches/id endpoint", () => {
   describe("When it receives a bad DELETE request", () => {
     test("Then it should reply with a 404 status code", async () => {
       await request(app).delete(`/my-matches/delete/30824720842`).expect(404);
+    });
+  });
+  describe("When it receives a POST bad request", () => {
+    test("Then it should invoke next", async () => {
+      const next = jest.fn();
+
+      await deleteMyMatch(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });
