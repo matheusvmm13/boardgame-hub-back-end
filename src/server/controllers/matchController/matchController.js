@@ -40,6 +40,7 @@ const createNewMatch = async (req, res, next) => {
 };
 
 const createNewMatchWithId = async (req, res, next) => {
+  debugger;
   const userId = toId(req.params.userId);
   const matchData = req.body;
 
