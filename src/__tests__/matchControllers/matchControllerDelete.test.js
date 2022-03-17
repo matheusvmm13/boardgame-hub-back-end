@@ -9,8 +9,10 @@ const Match = require("../../database/models/Match");
 const {
   deleteMyMatch,
 } = require("../../server/controllers/matchController/matchController");
+const User = require("../../database/models/User");
 
 let mongoServer;
+let userToken;
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
@@ -27,6 +29,19 @@ beforeAll(async () => {
     maxPlayers: 6,
     location: "Madrid",
   });
+
+  await User.create({
+    name: "Jamey Stagmeier",
+    username: "jmayer",
+    password: "$2b$10$DZkKzznjB.9YFZZsNHGI5.mSoL1MZ0fXngzjbL497rMl1PGnS3Xh.",
+  });
+
+  const { body } = await request(app).post("/users/login").send({
+    username: "jmayer",
+    password: "123456789",
+  });
+
+  userToken = body.token;
 });
 
 describe("Given a /my-matches/id endpoint", () => {
@@ -36,12 +51,16 @@ describe("Given a /my-matches/id endpoint", () => {
 
       await request(app)
         .delete(`/my-matches/delete/${matchToBeDeleted._id}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(200);
     });
   });
   describe("When it receives a bad DELETE request", () => {
     test("Then it should reply with a 404 status code", async () => {
-      await request(app).delete(`/my-matches/delete/30824720842`).expect(404);
+      await request(app)
+        .delete(`/my-matches/delete/30824720842`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(404);
     });
   });
   describe("When it receives a POST bad request", () => {

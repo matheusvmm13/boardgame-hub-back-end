@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "87cce3b0-0479-4526-93e6-6fbb693c3b74",
+    "name": "BoardGameHub - Matheus Martins",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}users",
+              "host": ["{{prod}}users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"jmayer\",\r\n    \"password\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}users/login",
+              "host": ["{{prod}}users"],
+              "path": ["login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}my-boardgames/622a34ef55c15b820edc9a3e",
+              "host": ["{{prod}}my-boardgames"],
+              "path": ["622a34ef55c15b820edc9a3e"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Boardgames",
+      "item": [
+        {
+          "name": "All Boardgames",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}all-boardgames/",
+              "host": ["{{prod}}all-boardgames"],
+              "path": [""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Boardgame",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGluYSBCbyIsImlkIjoiNjIyYjBhZThhMjVkODNlMzU4OTNiM2NjIiwiaWF0IjoxNjQ3MTgzOTk2fQ.lQ9SQHyjtaZBOBEsbpcocN_CpanqHZ0W_AcMiJNLAnk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}all-boardgames/add/622dd09e87c35208164d62c3/622a4dc955c15b820edc9a45",
+              "host": ["{{prod}}all-boardgames"],
+              "path": [
+                "add",
+                "622dd09e87c35208164d62c3",
+                "622a4dc955c15b820edc9a45"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My Boardgames",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}my-boardgames/622a34ef55c15b820edc9a3e",
+              "host": ["{{prod}}my-boardgames"],
+              "path": ["622a34ef55c15b820edc9a3e"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Matches",
+      "item": [
+        {
+          "name": "All Matches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}matches",
+              "host": ["{{prod}}matches"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My Matches",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyBMYW5nIiwiaWQiOiI2MjJhMzRlZjU1YzE1YjgyMGVkYzlhM2UiLCJpYXQiOjE2NDcyODQwMjZ9.jvUxDlL23V0idwK6qIIpFmDCg-B1vkKaJnZEPLLMdRs",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}my-matches/622a34ef55c15b820edc9a3e",
+              "host": ["{{prod}}my-matches"],
+              "path": ["622a34ef55c15b820edc9a3e"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My Match",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}my-matches/delete/6228ccf9c84b1704c29341e9",
+              "host": ["{{prod}}my-matches"],
+              "path": ["delete", "6228ccf9c84b1704c29341e9"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Match",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"gameTitle\": \"New Super newok Game\",\r\n    \"image\": \"https://cf.geekdo-images.com/PhjygpWSo-0labGrPBMyyg__imagepage/img/BjM3LyahJ4IQ2ov5MkzkHatbmUc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5666597.jpg\",\r\n    \"creator\": \"622a4dc955c15b820edc9a45\",\r\n    \"date\": \"2022-04-01\",\r\n    \"maxPlayers\": \"4\",\r\n    \"location\": \"Carrer de Pau Claris, Barcelona\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}my-matches/new-match",
+              "host": ["{{prod}}my-matches"],
+              "path": ["new-match"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Match With ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "DE4380A6175A22B58D4ED807F6D55F038B2C1033910763F9502D5A472ABCD908",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"gameTitle\": \"Near and Far\",\r\n    \"image\": \"https://cf.geekdo-images.com/lm8OOgJupqd3Q-fZ3DsQhw__imagepage/img/ywVsUPO0lgbzF2eS3-PosN04bNA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3605785.jpg\",\r\n    \"date\": \"2022-03-13\",\r\n    \"maxPlayers\": \"4\",\r\n    \"location\": \"Pau Claris, Barcelona\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}my-matches/new-match/622a4dc955c15b820edc9a45",
+              "host": ["{{prod}}my-matches"],
+              "path": ["new-match", "622a4dc955c15b820edc9a45"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "origin",
+      "value": "http://localhost:3500/",
+      "type": "string"
+    },
+    {
+      "key": "prod",
+      "value": "https://boardgame-hub-api.onrender.com/",
+      "type": "string"
+    }
+  ]
+}
