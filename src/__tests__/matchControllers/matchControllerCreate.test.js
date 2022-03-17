@@ -62,7 +62,7 @@ describe("Given a my-matches/new-match endpoint", () => {
         .post(`/my-matches/new-match`)
         .send(newMatch)
         .set("Authorization", `Bearer ${userToken}`)
-        .expect(201);
+        .expect(400);
 
       /* const res = {
         status: jest.fn().mockImplementation(() => res),
