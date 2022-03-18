@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const chalk = require("chalk");
 const { default: mongoose } = require("mongoose");
 const debug = require("debug")("boardgame:controller");
@@ -28,8 +29,13 @@ const getAllMatches = async (req, res, next) => {
 
 const createNewMatch = async (req, res, next) => {
   try {
+    debugger;
     const newMatch = req.body;
     const createdMatch = await Match.create(newMatch);
+    const userId = createdMatch.creator;
+    const user = await User.findById(userId);
+    user.matches.push(createdMatch._id);
+    await user.save();
     res.status(201).json(createdMatch);
     debug(`The match was created`);
   } catch (error) {
@@ -40,7 +46,6 @@ const createNewMatch = async (req, res, next) => {
 };
 
 const createNewMatchWithId = async (req, res, next) => {
-  debugger;
   const userId = toId(req.params.userId);
   const matchData = req.body;
 

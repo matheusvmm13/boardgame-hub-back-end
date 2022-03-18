@@ -7,7 +7,6 @@ const User = require("../../../database/models/User");
 const secret = process.env.JWT_SECRET;
 
 const loginController = async (req, res, next) => {
-  debugger;
   const loginErrorProtocol = () => {
     const loginError = new Error("Wrong credentials");
     debug(chalk.red(`Error: `, loginError.message));
