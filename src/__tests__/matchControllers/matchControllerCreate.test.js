@@ -9,6 +9,7 @@ const {
   createNewMatch,
 } = require("../../server/controllers/matchController/matchController");
 const app = require("../../server");
+const Match = require("../../database/models/Match");
 
 let mongoServer;
 let userToken;
@@ -34,9 +35,10 @@ beforeAll(async () => {
   userToken = body.token;
 });
 
-/* afterEach(async () => {
+afterEach(async () => {
   await Match.deleteMany({});
-}); */
+  jest.restoreAllMocks();
+});
 
 describe("Given a my-matches/new-match endpoint", () => {
   describe("When it receives a POST request", () => {
@@ -48,34 +50,29 @@ describe("Given a my-matches/new-match endpoint", () => {
         date: "2022-04-01",
         maxPlayers: 4,
         location: "Barcelona",
+        id: "622a4dc955c15b820edc9a45",
       };
 
       const mockUser = {
-        // las cosas del user
-        matches: jest.fn().mockReturnThis(),
-        push: () => {},
+        name: "Jamey Stagmeier",
+        username: "jmayer",
+        password:
+          "$2b$10$DZkKzznjB.9YFZZsNHGI5.mSoL1MZ0fXngzjbL497rMl1PGnS3Xh.",
+        matches: [],
+        boardgames: [],
         save: () => {},
       };
+      Match.create = jest
+        .fn()
+        .mockResolvedValue({ id: "622a4dc955c15b820edc9a45" });
+
       User.findById = jest.fn().mockResolvedValue(mockUser);
 
-      const sentRequest = await request(app)
+      await request(app)
         .post(`/my-matches/new-match`)
         .send(newMatch)
         .set("Authorization", `Bearer ${userToken}`)
-        .expect(400);
-
-      /* const res = {
-        status: jest.fn().mockImplementation(() => res),
-        json: jest.fn(),
-      };
-
-      const next = jest.fn();
-
-      await createNewMatch(req, res, next);
-
-      expect(res.status).toHaveBeenCalledWith(201);
-      expect(res.json).toHaveBeenCalled(); */
-      expect(sentRequest).toHaveProperty("gameTitle");
+        .expect(201);
     });
   });
   describe("When it receives a POST bad request", () => {
