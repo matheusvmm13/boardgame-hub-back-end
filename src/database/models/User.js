@@ -14,17 +14,14 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  picture: {
-    type: String,
-  },
   boardgames: {
     type: [Schema.Types.ObjectId],
-    default: undefined,
+    default: [],
     ref: "Boardgame",
   },
   matches: {
     type: [Schema.Types.ObjectId],
-    default: undefined,
+    default: [],
     ref: "Match",
   },
 });

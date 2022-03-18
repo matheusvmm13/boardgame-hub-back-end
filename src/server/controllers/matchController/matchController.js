@@ -29,7 +29,6 @@ const getAllMatches = async (req, res, next) => {
 
 const createNewMatch = async (req, res, next) => {
   try {
-    debugger;
     const newMatch = req.body;
     const createdMatch = await Match.create(newMatch);
     const userId = createdMatch.creator;
