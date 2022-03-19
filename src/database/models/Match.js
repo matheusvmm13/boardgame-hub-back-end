@@ -31,6 +31,10 @@ const MatchSchema = new Schema({
     type: String,
     required: true,
   },
+  boardgame: {
+    type: String,
+    ref: "Boardgame",
+  },
 });
 
 const MatchJoiSchema = Joi.object({

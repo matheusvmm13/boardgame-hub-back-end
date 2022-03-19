@@ -29,7 +29,10 @@ const getAllMatches = async (req, res, next) => {
 
 const getMatchInfo = async (req, res, next) => {
   try {
-    const match = await Match.findById(req.params.id);
+    const match = await Match.findById(req.params.id).populate({
+      path: "creator",
+      select: "-password",
+    });
     res.status(200).json({ match });
     debug(`This is your match: ${match}`);
   } catch (error) {
