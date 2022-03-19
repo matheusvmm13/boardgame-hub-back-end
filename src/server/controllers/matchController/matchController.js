@@ -27,6 +27,18 @@ const getAllMatches = async (req, res, next) => {
   }
 };
 
+const getMatchInfo = async (req, res, next) => {
+  try {
+    const match = await Match.findById(req.params.id);
+    res.status(200).json({ match });
+    debug(`This is your match: ${match}`);
+  } catch (error) {
+    debug(chalk.red(`Error: `, error.message));
+    error.status = 404;
+    next(error);
+  }
+};
+
 const createNewMatch = async (req, res, next) => {
   try {
     const newMatch = req.body;
@@ -97,6 +109,7 @@ const deleteMyMatch = async (req, res, next) => {
 
 module.exports = {
   getAllMatches,
+  getMatchInfo,
   createNewMatch,
   deleteMyMatch,
   getMyMatches,
