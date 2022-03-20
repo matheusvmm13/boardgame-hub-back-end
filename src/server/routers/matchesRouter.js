@@ -7,6 +7,7 @@ const {
   createNewMatchWithId,
   getMyMatches,
   getMatchInfo,
+  editMyMatch,
 } = require("../controllers/matchController/matchController");
 const tokenAuth = require("../middlewares/tokenAuth");
 
@@ -20,5 +21,6 @@ matchesRouter.post(
   createNewMatchWithId
 );
 matchesRouter.delete("/my-matches/delete/:id", tokenAuth, deleteMyMatch);
+matchesRouter.put("/my-matches/edit/:id", tokenAuth, editMyMatch);
 
 module.exports = matchesRouter;
