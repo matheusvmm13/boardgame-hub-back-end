@@ -110,6 +110,28 @@ const deleteMyMatch = async (req, res, next) => {
   }
 };
 
+const editMyMatch = async (req, res, next) => {
+  const data = req.body;
+  const { id } = req.params;
+  const { date, maxPlayers, location } = data;
+  const infoToUpdate = {
+    date,
+    maxPlayers,
+    location,
+  };
+  try {
+    const updatedMatch = await Match.findByIdAndUpdate(id, infoToUpdate, {
+      new: true,
+    });
+    res.status(200).json(updatedMatch);
+    debug(`The updated match: ${updatedMatch}`);
+  } catch (error) {
+    debug(chalk.red(`Error: `, error.message));
+    error.status = 404;
+    next(error);
+  }
+};
+
 module.exports = {
   getAllMatches,
   getMatchInfo,
@@ -117,4 +139,5 @@ module.exports = {
   deleteMyMatch,
   getMyMatches,
   createNewMatchWithId,
+  editMyMatch,
 };

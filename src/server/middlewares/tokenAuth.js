@@ -1,7 +1,6 @@
 const jsonwebtoken = require("jsonwebtoken");
 
 const tokenAuth = async (req, res, next) => {
-  debugger;
   const headerAuthorization = req.header("authorization");
   if (!headerAuthorization) {
     const error = new Error("Missing Token");
