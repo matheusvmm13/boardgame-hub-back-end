@@ -34,7 +34,7 @@ describe("Given a /all-boardgames endpoint", () => {
   });
   describe("When it receives a bad GET request", () => {
     test("Then it should reply with a 404 status code", async () => {
-      await request(app).get("/all-baordgame/").expect(404);
+      await request(app).get("/all-boardgame/").expect(404);
     });
     test("Then it should invoke next", async () => {
       const next = jest.fn();
