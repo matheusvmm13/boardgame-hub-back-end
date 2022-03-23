@@ -4,7 +4,6 @@ const {
   getAllMatches,
   createNewMatch,
   deleteMyMatch,
-  createNewMatchWithId,
   getMyMatches,
   getMatchInfo,
   editMyMatch,
@@ -15,11 +14,6 @@ matchesRouter.get("/matches/", getAllMatches);
 matchesRouter.get("/matches/:id", getMatchInfo);
 matchesRouter.post("/my-matches/new-match", tokenAuth, createNewMatch);
 matchesRouter.get("/my-matches/:id", tokenAuth, getMyMatches);
-matchesRouter.post(
-  "/my-matches/new-match/:userId",
-  tokenAuth,
-  createNewMatchWithId
-);
 matchesRouter.delete("/my-matches/delete/:id", tokenAuth, deleteMyMatch);
 matchesRouter.put("/my-matches/edit/:id", tokenAuth, editMyMatch);
 
