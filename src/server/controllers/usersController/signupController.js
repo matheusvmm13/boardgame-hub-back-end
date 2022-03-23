@@ -24,7 +24,7 @@ const signupController = async (req, res, next) => {
       };
 
       const createdUser = await User.create(newUser);
-      res.json(createdUser);
+      res.status(201).json(createdUser);
     }
   }
 };
