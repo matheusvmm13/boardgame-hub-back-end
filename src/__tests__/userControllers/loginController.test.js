@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../database/models/User");
-const loginController = require("../server/controllers/usersController/loginController");
+const User = require("../../database/models/User");
+const loginController = require("../../server/controllers/usersController/loginController");
 
-jest.mock("../database/models/User");
+jest.mock("../../database/models/User");
 
 describe("Given a login user controller", () => {
   describe("When it receives a request with a matching username & password", () => {

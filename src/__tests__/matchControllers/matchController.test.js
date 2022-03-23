@@ -7,6 +7,8 @@ const app = require("../../server");
 const connectDataBase = require("../../database");
 const {
   getAllMatches,
+  getMyMatches,
+  getMatchInfo,
 } = require("../../server/controllers/matchController/matchController");
 const User = require("../../database/models/User");
 const Match = require("../../database/models/Match");
@@ -65,6 +67,13 @@ describe("Given a /matches endpoint", () => {
     test("Then it should reply with a 200 status code", async () => {
       const userId = "6233075705443313063349fd";
       await request(app).get(`/matches/${userId}`).expect(200);
+    });
+    test("Then it should reply with a 404 status code", async () => {
+      const next = jest.fn();
+
+      await getMatchInfo(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
   describe("When it receives a Bad GET request with an ID", () => {
@@ -135,6 +144,15 @@ describe("Given a /matches endpoint", () => {
         .send(newMatch)
         .set("Authorization", `Bearer ${userToken}`)
         .expect(404);
+    });
+  });
+  describe("When it receives a POST bad request", () => {
+    test("Then it should invoke next", async () => {
+      const next = jest.fn();
+
+      await getMyMatches(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
   describe("When it receives a POST bad request", () => {

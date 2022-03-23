@@ -54,4 +54,23 @@ describe("Given a Sign Up controller", () => {
       expect(next).toHaveBeenCalledWith(error);
     });
   });
+  describe("When it receives a request with a username that already exists", () => {
+    test("Then it should call next method with a 400 status", async () => {
+      const req = {
+        body: { name: "" },
+      };
+      const res = {
+        json: jest.fn(),
+        status: jest.fn(),
+      };
+      const next = jest.fn();
+
+      const error = new Error("You must provide a name, username and password");
+      error.status = 400;
+
+      await signupController(req, res, next);
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
 });

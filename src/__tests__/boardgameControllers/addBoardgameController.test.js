@@ -16,7 +16,6 @@ describe("Given a all-boardgames/add/id/id endpoint", () => {
       const next = jest.fn();
 
       const mockUser = {
-        // las cosas del user
         save: () => {},
       };
       User.findById = jest.fn().mockResolvedValue(mockUser);

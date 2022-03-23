@@ -5,6 +5,7 @@ const signupController = async (req, res, next) => {
   const { name, username, password } = req.body;
 
   if (!name || !username || !password) {
+    debugger;
     const error = new Error("You must provide a name, username and password");
     error.status = 400;
     next(error);
